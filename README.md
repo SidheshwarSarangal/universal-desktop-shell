@@ -2,7 +2,7 @@
 
 A reusable Electron shell that opens a secure Windows/Linux desktop window and displays any browser-compatible frontend.
 
-> Status: design baseline approved for discussion. Implementation begins after the decisions in [Open Decisions](docs/open-decisions.md) are resolved.
+> Status: architecture decisions accepted. The project is ready for a detailed implementation plan and phased development.
 
 ## At a glance
 
@@ -11,8 +11,10 @@ flowchart LR
     User([User]) --> Host[Host application]
     Host --> Shell[Universal Desktop Shell]
     Shell --> Window[Electron window]
-    Window --> UI[Any browser frontend]
+    Window --> UI[Trusted app frontend]
+    Window --> Remote[Isolated remote content]
     UI -->|restricted bridge| Shell
+    Remote -.no bridge by default.-> Window
     Shell -->|approved action| Host
     Host --> Services[App services]
 ```
@@ -45,7 +47,7 @@ flowchart TB
 | [Requirements & Architecture](docs/requirements-and-architecture.md) | Scope, components, lifecycle, and acceptance criteria |
 | [Security Review](docs/security-review-plan.md) | Trust boundaries, threats, controls, and verification |
 | [Optimization Plan](docs/optimization-plan.md) | Metrics, budgets, performance work, and regression checks |
-| [Open Decisions](docs/open-decisions.md) | Choices required before implementation |
+| [Design Decisions](docs/design-decisions.md) | Accepted choices, rationale, limits, and deferred scope |
 
 ## Planned delivery
 

@@ -206,4 +206,4 @@ Instrumentation must be asynchronous where practical, bounded, optional in produ
 - [ ] Package contents and dependency growth are inspected.
 - [ ] Security controls remain enabled in every benchmark configuration.
 
-Final targets and version-one features remain in [Open Decisions](open-decisions.md).
+Initial budgets and version-one scope are recorded in [Design Decisions](design-decisions.md). Baseline results may tighten budgets but cannot silently weaken a release gate.

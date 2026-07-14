@@ -21,7 +21,7 @@ flowchart TB
     end
 
     subgraph Renderer[Untrusted renderer side]
-        UI[Any browser-compatible frontend]
+        UI[Approved browser-compatible app frontend]
     end
 
     Host -->|configuration| Manager
@@ -82,7 +82,7 @@ sequenceDiagram
 
 ## 5. Configuration model
 
-Planning shape—not a frozen API:
+Accepted configuration direction; exact exported names may be refined during implementation:
 
 ```ts
 type WindowConfig = {
@@ -122,15 +122,17 @@ stateDiagram-v2
     Closed --> [*]
 ```
 
-The shell owns window-level transitions. The host decides whether closing the last window quits the whole application and how business tasks stop.
+The core owns window-level transitions. An optional lifecycle helper supplies conventional ready, single-instance, activate, and quit behavior. The host always owns business-task shutdown.
 
 ## 7. Cross-platform contract
 
 Guaranteed behavior should cover window creation, loading, core lifecycle, errors, and bridge behavior. Appearance may differ by operating system or Linux desktop environment.
 
-Initial expectations:
+Initial support policy:
 
 - Native frame first; custom title bars are deferred.
+- Windows 10/11 x64 and Ubuntu LTS x64 are the first required test targets.
+- Windows installer, Linux AppImage, and Linux DEB examples are host-level deliverables.
 - Windows icon assets and Linux icon/package behavior are tested separately.
 - Restored bounds remain visible after monitor or scaling changes.
 - Common display scaling is included in smoke tests.
@@ -160,4 +162,4 @@ Test fixtures should include plain HTML, one bundled framework UI, and an intent
 - [ ] Security and performance review gates pass.
 - [ ] Integration is documented with a minimal example host.
 
-See [Open Decisions](open-decisions.md) before treating this architecture as frozen.
+Accepted architectural choices and deferred features are recorded in [Design Decisions](design-decisions.md).

@@ -164,4 +164,4 @@ Required outputs:
 - [ ] Dependency, package, signing, update, and rollback ownership is documented.
 - [ ] Windows and Linux packaged security tests pass.
 
-Security decisions that remain unresolved are listed in [Open Decisions](open-decisions.md).
+Accepted security defaults and responsibility boundaries are recorded in [Design Decisions](design-decisions.md).
