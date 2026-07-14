@@ -1,0 +1,68 @@
+{
+  "name": "universal-desktop-shell",
+  "version": "0.1.0",
+  "description": "A secure, reusable Electron window shell for browser-compatible frontends.",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./preload": "./dist/preload.js",
+    "./renderer": {
+      "types": "./dist/renderer.d.ts",
+      "require": "./dist/renderer.js",
+      "default": "./dist/renderer.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:electron": "npm run build && node scripts/run-electron-smoke.cjs",
+    "example": "npm run build && electron examples/basic/main.cjs",
+    "check:budgets": "node scripts/check-budgets.cjs",
+    "validate": "npm run check && npm run test && npm run build && npm run check:budgets",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\""
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "peerDependencies": {
+    "electron": ">=35 <45"
+  },
+  "keywords": [
+    "electron",
+    "browserwindow",
+    "desktop",
+    "windows",
+    "linux",
+    "shell"
+  ],
+  "dependencies": {
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "@vitest/coverage-v8": "^4.1.10",
+    "electron": "^43.1.0",
+    "esbuild": "^0.27.2",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10"
+  },
+  "allowScripts": {
+    "electron@43.1.0": true,
+    "esbuild@0.27.2": true
+  }
+}
